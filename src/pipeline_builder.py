@@ -1,6 +1,20 @@
 from sklearn.pipeline import Pipeline
 from sklearn.compose import ColumnTransformer
-from src.preprocess import get_preprocessing_components
+from sklearn.impute import SimpleImputer
+from sklearn.preprocessing import StandardScaler
+from sklearn.preprocessing import OneHotEncoder
+
+def get_preprocessing_components():
+    #numerical pipeline
+
+    num_imputer = SimpleImputer(strategy="median")
+    scaler = StandardScaler()
+
+    #categorical pipeline
+    cat_imputer = SimpleImputer(strategy="most_frequent")
+    encoder = OneHotEncoder(handle_unknown="ignore")
+
+    return num_imputer, scaler, cat_imputer, encoder
 
 def build_pipeline(numerical_features, categorical_features):
     num_imputer, scaler, cat_imputer, encoder = get_preprocessing_components()
