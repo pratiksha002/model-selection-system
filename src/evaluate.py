@@ -4,7 +4,7 @@ import numpy as np
 def evaluate_models(models, x_test, y_test):
     results = {}
 
-    for name, model in model.items():
+    for name, model in models.items():
         y_pred = model.predict(x_test)
 
         mae = mean_absolute_error(y_test, y_pred)
