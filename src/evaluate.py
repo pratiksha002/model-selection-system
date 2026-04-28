@@ -10,14 +10,14 @@ def evaluate_models(models, x_train, y_train):
             model,
             x_train,
             y_train,
-            cv=5,
+            cv=2,
             scoring="neg_mean_absolute_error"
         )
 
         mae = -scores.mean()
 
         results[name] = {
-            "mae": round(mae, 4)
+            "mae": round(float(mae), 4)
         }
 
         print(f"{name} evaluated")

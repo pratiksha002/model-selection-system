@@ -41,7 +41,7 @@ def train_models(x_train, y_train):
         grid = GridSearchCV(
             model,
             params,
-            cv=5,
+            cv=2,
             scoring="neg_mean_absolute_error",
             n_jobs=-1
         )

@@ -3,7 +3,7 @@ import pickle
 import os
 from sklearn.model_selection import train_test_split
 from src.pipeline_builder import build_pipeline
-from src.train_models import train_model
+from src.train_models import train_models
 from src.evaluate import evaluate_models
 from src.selector import select_best_model
 
@@ -33,15 +33,15 @@ def main():
     x_train_transformed = pipeline.fit_transform(x_train)
     x_test_transformed = pipeline.transform(x_test)
 
-    models = train_model(x_train_transformed, y_train)
+    models = train_models(x_train_transformed, y_train)
 
-    results = evaluate_models(models, x_train_transformed, y_test)
+    results = evaluate_models(models, x_train_transformed, y_train)
 
     print("\nModel Performance")
     for model, metrics in results.items():
         print(model, "=", metrics)
 
-    best_model_name, best_metrics = select_best_model(results, metric="mae")
+    best_model_name, best_metrics = select_best_model(results)
     best_model = models[best_model_name]
 
 
