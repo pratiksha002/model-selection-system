@@ -2,19 +2,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.tree import DecisionTreeRegressor
 from sklearn.ensemble import RandomForestRegressor
 
-def train_model(x_train, y_train):
+def train_model():
     models = {
         "Linear Regression": LogisticRegression(),
-        "Decision Tree": DecisionTreeRegressor(),
-        "Random Forest": RandomForestRegressor()
+        "Decision Tree": DecisionTreeRegressor(max_depth=5, min_samples_split=4),
+        "Random Forest": RandomForestRegressor(n_estimators=100, max_depth=5, random_state=45)
     }
 
-
-    trained_models = {}
-
-    for name,model in models.items():
-        model.fit(x_train, y_train)
-        trained_models[name] = model
-        print(f"{name} trained")
-
-    return trained_models
+    return models
