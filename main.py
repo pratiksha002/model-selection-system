@@ -35,7 +35,7 @@ def main():
 
     models = train_model(x_train_transformed, y_train)
 
-    results = evaluate_models(models, x_test_transformed, y_test)
+    results = evaluate_models(models, x_train_transformed, y_test)
 
     print("\nModel Performance")
     for model, metrics in results.items():
